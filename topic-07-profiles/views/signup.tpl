@@ -1,8 +1,7 @@
 <html>
 <body>
-<h1>Login</h1>
-{{message}}<br/>
-<form action="/login" method="post">
+<h1>Sign Up</h1>
+<form action="/signup" method="post">
   <hr/>
   <table>
     <tr>
@@ -12,6 +11,10 @@
     <tr>
       <td><em>Password</em></td>
       <td><input type="password" name="password"/></td>
+    </tr>
+    <tr>
+      <td><em>Password, again</em></td>
+      <td><input type="password" name="password_again"/></td>
     </tr>
   </table>
   <hr/>

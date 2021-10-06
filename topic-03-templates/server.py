@@ -1,26 +1,24 @@
 from bottle import route, run, template
 
-#http://localhost:8068/.....<route>
+# http://localhost:8068/.... <route> 
 
 @route("/")
 def get_index():
-    return ("home page")
+    return ("home page!")
 
 @route("/hello")
 @route("/hello/<name>")
-def get_index(name="world"):
-    return template("hello.tpl", name ="Jakub", extra="Happy Birthday")
+def get_hello(name="world"):
+    return template("hello", name="Bob", extra=None)
 
 @route("/greet")
 @route("/greet/<name>")
-def get_index(name="world"):
-    return template("hello.tpl", name ="Jakub", extra="Happy Birthday")
+def get_greet(name="world"):
+    return template("hello", name="Bob", extra="Happy Birthday!")
 
-@route("/greetings")
-@route("/greetings/<names>")
-def get_index(name="world"):
-    names = name.split(',')
-    return template("hello.tpl", name=None, names =names, extra="Happy Birthday")
-
+@route("/greeting/<names>")
+def get_greeting(names):
+    names = names.split(',')
+    return template("greetings", names=names)
 
 run(host="localhost", port=8068)

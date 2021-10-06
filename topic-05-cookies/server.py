@@ -2,6 +2,7 @@ from bottle import run, template, default_app
 from bottle import get, post 
 from bottle import request 
 from bottle import debug
+from bottle import request, response
 
 # http://localhost:8068/.... <route> 
 
@@ -11,8 +12,12 @@ def get_index():
 
 @get("/hello")
 @get("/hello/<name>")
-def get_hello(name="world"):
-    return template('hello', name="Bob", extra=None)
+def get_hello(name=None):
+    current_user = request.get_cookie("username", default="world")
+    print("current user = ",current_user)
+    if name == None:
+        name = current_user
+    return template('hello', name=name, extra=None)
 
 @get("/greet")
 @get("/greet/<name>")
@@ -30,10 +35,13 @@ def get_login():
 
 @post("/login")
 def post_login():
+    global current_user
     username = request.forms['username']
     password = request.forms['password']
     if password != "magic":
         return template("login", message="Bad password")
+    current_user = username
+    response.set_cookie("username",username)
     return template("hello", name=username+"!!!!", extra="Happy Birthday!")
 
 debug(True)

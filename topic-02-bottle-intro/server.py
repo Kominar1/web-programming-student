@@ -1,14 +1,14 @@
-from bottle import route, run 
+from bottle import route, run
 
-#http://localhost:8068/.....<route>
+# http://localhost:8068/.... <route> 
 
 @route("/")
 def get_index():
-    return ("home page")
+    return ("home page!")
 
 @route("/hello")
 @route("/hello/<name>")
-def get_index(name="world"):
+def get_hello(name="world"):
     return (f"Hello, {name}!")
 
 run(host="localhost", port=8068)

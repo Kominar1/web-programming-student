@@ -1,2 +1,2 @@
-# web-programming-student
-Repository for web programming
+# web-programming
+Dr. DeLozier's web programming class files.
